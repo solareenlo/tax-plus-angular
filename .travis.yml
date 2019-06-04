@@ -1,0 +1,26 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - "10"
+
+dist: trusty
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - npm i -g @angular/cli@8.0.0
+
+script:
+  - ng build --prod --base-href="https://solareenlo.github.io/tax-plus-angular/"
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/tax-plus-angular
+  on:
+    branch: master
