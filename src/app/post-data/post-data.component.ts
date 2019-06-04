@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Crypto, Miner } from './post.model';
+import { PostService } from './post.service';
 
 @Component({
   selector: 'app-post-data',
@@ -42,14 +44,31 @@ export class PostDataComponent implements OnInit {
     this.file = files[0];
   }
 
-  constructor() { }
+  constructor(
+    private postService: PostService
+  ) {}
 
   ngOnInit() {
     this.form = new FormGroup({
-      crypto: new FormControl(null),
-      minner: new FormControl(null),
-      file: new FormControl(null)
+      crypto: new FormControl(null, {validators: [Validators.required]}),
+      miner: new FormControl(null, {validators: [Validators.required]}),
+      file: new FormControl(null, {validators: [Validators.required]})
     });
+  }
+
+  onAddPost(form: NgForm): void {
+    if (form.invalid) {
+      return ;
+    }
+    console.log('hello');
+    this.postService.addPost(
+      this.selectedCrypto,
+      this.selectedMiner,
+      this.file
+      // this.form.value.crypto,
+      // this.form.value.miner,
+      // this.form.value.file
+    );
   }
 
 }

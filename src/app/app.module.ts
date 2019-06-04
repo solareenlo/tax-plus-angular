@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import {
   MatToolbarModule,
   MatCardModule,
@@ -28,7 +29,9 @@ import { PostDataComponent } from './post-data/post-data.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatCardModule,
     MatFormFieldModule,

@@ -1,5 +1,5 @@
 <mat-card>
-  <form>
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
     <div class="container">
       <h4>暗号資産の種類を選んでください。</h4>
       <mat-form-field>
@@ -11,6 +11,7 @@
             {{ item.viewValue }}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="form.get('crypto').invalid">暗号資産を選んでください。</mat-error>
       </mat-form-field>
     </div>
 
