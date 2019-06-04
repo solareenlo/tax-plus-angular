@@ -1,0 +1,57 @@
+<mat-card>
+  <form>
+    <div class="container">
+      <h4>暗号資産の種類を選んでください。</h4>
+      <mat-form-field>
+        <mat-label>暗号資産</mat-label>
+        <mat-select [(ngModel)]="selectedCrypto" name="item">
+          <mat-option
+            *ngFor="let item of crypto"
+            [value]="item.viewValue">
+            {{ item.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container">
+      <h4>取引所の種類を選んでください。</h4>
+      <mat-form-field>
+        <mat-label>取引所</mat-label>
+        <mat-select [(ngModel)]="selectedMiner" name="item">
+          <mat-option
+            *ngFor="let item of miner"
+            [value]="item.viewValue">
+            {{ item.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container">
+      <h4>CSVファイルかExcelファイルを選択してください。</h4>
+      <input
+        type="file"
+        style="display: none"
+        #fileInput accept="image/*"
+        (change)="onChangeFileInput()"/>
+      <button
+        mat-raised-button color="primary"
+        class="file-select-button"
+        (click)="onClickFileInputButton()">
+        <mat-icon>attach_file</mat-icon>
+        ファイルを選択
+      </button>
+      <p class="file-name" *ngIf="!file; else fileName">
+        ファイルが選択されていません。
+      </p>
+      <ng-template #fileName>
+        <p class="file-name">{{ file?.name }}</p>
+      </ng-template>
+    </div>
+
+    <button mat-raised-button color="accent" type="submit">
+      計算する
+    </button>
+  </form>
+</mat-card>
